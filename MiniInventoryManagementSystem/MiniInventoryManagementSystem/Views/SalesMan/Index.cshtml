@@ -1,0 +1,99 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SalesMan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    table, tr, th, td {
+        text-align: center;
+    }
+
+    thead {
+        background-color: dimgrey;
+        color: ghostwhite;
+    }
+
+    .addCatagory {
+        text-align: right;
+    }
+
+        .addCatagory a {
+            border-radius: 10px;
+        }
+</style>
+
+<div class="card pt-5 ps-5 pe-5 pb-1">
+    <h1 class="text-center">All Record's of SalesMans</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    SN
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesManId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesManName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesManAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesManPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesManDesignation)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    @{
+                        i++;
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesManId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesManName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesManAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesManPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesManDesignation)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SalesManId"><i class="bi bi-pencil-square text-danger fs-5"></i></a> |
+                        <a asp-action="Details" asp-route-id="@item.SalesManId"><i class="bi bi-person-vcard text-danger fs-5"></i></a> |
+                        <a asp-action="Delete" asp-route-id="@item.SalesManId"><i class="bi bi-trash text-danger fs-5"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p class="addCatagory me-1">
+        <a asp-action="Create" class="btn btn-primary fs-5">Add New SalesMan</a>
+    </p>
+</div>

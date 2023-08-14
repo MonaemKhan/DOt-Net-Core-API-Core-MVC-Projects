@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.Stock>
+
+@{
+    ViewData["Title"] = "Stock";
+}
+
+<h1>Stock</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CatagoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchesDetailsQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesDetailsQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatagoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesDetailsQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesDetailsQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,88 @@
+﻿@model MiniInventoryManagementSystem.Models.SalesMan
+
+@{
+    ViewData["Title"] = $"Edit Info of {Model.SalesManName}";
+}
+
+<link rel="stylesheet" href="@Url.Content("~/CustomStyle/SelectBox/SelectBoxDesign.css")">
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
+
+<div class="card pt-5 pb-1">
+     <h1 class="text-center">Edit SalesMans Info of @Model.SalesManName</h1>
+    <div class="row ms-5">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="SalesManId" />
+                <div class="form-group">
+                    <label asp-for="SalesManName" class="control-label"></label>
+                    <input asp-for="SalesManName" class="form-control" />
+                    <span asp-validation-for="SalesManName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesManDOB" class="control-label"></label>
+                    <input type="date" asp-for="SalesManDOB" class="form-control" />
+                    <span asp-validation-for="SalesManDOB" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesManAddress" class="control-label"></label>
+                    <input asp-for="SalesManAddress" class="form-control" />
+                    <span asp-validation-for="SalesManAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesManPhone" class="control-label"></label>
+                    <input asp-for="SalesManPhone" class="form-control" />
+                    <span asp-validation-for="SalesManPhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesManEmail" class="control-label"></label>
+                    <input asp-for="SalesManEmail" class="form-control" />
+                    <span asp-validation-for="SalesManEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                        <label asp-for="SalesManDesignation" class="control-label"></label>
+                        <div class="selectItem !importent">
+                            <Select asp-for="SalesManDesignation" class="form-control">
+                                <option value="">Choose an Designation</option>
+                                <option value="New Recruit">New Recruit</option>
+                                <option value="Intern">Intern</option>
+                                <option value="Junior SalesMan">Junior SalesMan</option>
+                                <option value="Senior SalesMan">Senior SalesMan</option>
+                                <option value="Head of Sale">Hade of Sale</option>
+                                <option value="Sales MD">Sales MD</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="SalesManDesignation" class="text-danger"></span>
+                    </div>
+                <div class="form-group">
+                    <label asp-for="SalesManSalary" class="control-label"></label>
+                    <input asp-for="SalesManSalary" class="form-control" />
+                    <span asp-validation-for="SalesManSalary" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesManJoiningDate" class="control-label"></label>
+                    <input type="date" asp-for="SalesManJoiningDate" class="form-control" />
+                    <span asp-validation-for="SalesManJoiningDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2 mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ms-2">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To SalesMan's List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,118 @@
+﻿@model MiniInventoryManagementSystem.Models.SalesMan
+
+@{
+    ViewData["Title"] = $"Details of salesMan {Model.SalesManName}";
+}
+
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint.css")>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint_jQuery.css")>
+<style>
+    #CustomDataTable_filter {
+        display: none;
+    }
+
+    #CustomDataTable_info {
+        display: none;
+    }
+
+    #CustomDataTable_paginate {
+        display: none;
+    }
+
+    tr th {
+        display: none;
+    }
+
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    td {
+        text-align: left !important;
+    }
+
+</style>
+
+<div class="card p-4 pb-2">
+    <h1 class="text-center">View @Model.SalesManName's Info</h1>
+    <div class="row">
+        <table id="CustomDataTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManId)</></td>
+                    <td>@Html.DisplayFor(model => model.SalesManId)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManName)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManName)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManDOB)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManDOB)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManAddress)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManAddress)</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManPhone)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManPhone)</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManEmail)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManEmail)</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManDesignation)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManDesignation)</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManSalary)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManSalary)</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesManJoiningDate)</td>
+                    <td>@Html.DisplayFor(model => model.SalesManJoiningDate)</td>
+                </tr>
+        </table>
+    </div>
+    <div class="ms-2 mt-3">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Catagory List </a> ||
+        <a asp-action="Edit" asp-route-id="@Model.SalesManId" class="text-decoration-none"> <i class="bi bi-caret-left-square fs-6"></i>Go To Edit</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery2.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery3.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/Datatable_JQuery4.js")></script>
+    <script>
+        $(document).ready(function () {
+            $('#CustomDataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+    </script>
+}

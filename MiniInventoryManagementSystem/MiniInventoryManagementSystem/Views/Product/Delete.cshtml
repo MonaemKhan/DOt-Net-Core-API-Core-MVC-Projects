@@ -1,0 +1,43 @@
+﻿@model MiniInventoryManagementSystem.Models.Product
+
+@{
+    ViewData["Title"] = $"Delete {Model.ProductName} info";
+}
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
+
+<div class="card">
+    <h4 class="ms-5">
+        Are you sure you want to delete Product @Model.ProductName?
+    </h4>
+    <div class="ms-5 mb-3">
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>:
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Product_Catagory)
+            </dt>:
+            <dd class="col-sm-7">
+                @Html.DisplayFor(model => model.Product_Catagory.CatagoryName)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ProductId" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    </div>
+    <div class="ms-2">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Product List</a>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@model MiniInventoryManagementSystem.Models.Product
+@using MiniInventoryManagementSystem.Models.SupportClass
+@{
+    ViewData["Title"] = "Create New Product";
+    SupportClassErrorView errorview = TempData["errormessage"] as SupportClassErrorView;
+}
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
+
+@if (errorview != null && errorview.IsError)
+{
+    <script>
+        alert(`@errorview.ErrorType\n @errorview.ErrorMessage`);
+    </script>
+}
+
+<div class="card pt-5 pb-1">
+    <h1 class="text-center">Create New Product</h1>
+    <div class="row ms-5">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ProductId" />
+                <div class="form-group">
+                    <label asp-for="ProductName" class="control-label"></label>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Product_CatagoryId" class="control-label"></label>
+                    <select asp-for="Product_CatagoryId" class="form-control">
+                        <option value="" selected>Chose One Option</option>
+                        @foreach (var item in ViewBag.CatagoryList)
+                        {
+                            <option value="@item.CatagoryId">@item.CatagoryName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Product_CatagoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2 mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ms-2">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Product List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

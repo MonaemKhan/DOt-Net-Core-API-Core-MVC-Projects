@@ -1,0 +1,73 @@
+﻿@model MiniInventoryManagementSystem.Models.SupportClass.Sales_and_SalesDetails
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Sales_and_SalesDetails</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SalesDetailsPrice" class="control-label"></label>
+                <input asp-for="SalesDetailsPrice" class="form-control" />
+                <span asp-validation-for="SalesDetailsPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesDetailsQuantity" class="control-label"></label>
+                <input asp-for="SalesDetailsQuantity" class="form-control" />
+                <span asp-validation-for="SalesDetailsQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesDetails_ProductId" class="control-label"></label>
+                <select asp-for="SalesDetails_ProductId" class="form-control">
+                    <option>Select Product</option>
+                    @foreach (var item in ViewBag.ProductList)
+                    {
+                        <option value="@item.ProductId">@item.ProductName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sales_SalesManId" class="control-label"></label>
+                <select asp-for="Sales_SalesManId" class="form-control">
+                    <option>Select SalesMan</option>
+                    @foreach (var item in ViewBag.SalesManList)
+                    {
+                        <option value="@item.SalesManId">@item.SalesManName,SalesManDesignation,@item.SalesManPhone</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sales_CustomerId" class="control-label"></label>
+                <select asp-for="Sales_CustomerId" class="form-control">
+                    <option>Select Customer</option>
+                    @foreach (var item in ViewBag.CustomerList)
+                    {
+                        <option value="@item.CustomerId">@item.CustomerName,@item.CustomerAddress,@item.CustomerPhone</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalesDate" class="control-label"></label>
+                <input type="date" asp-for="SalesDate" class="form-control" />
+                <span asp-validation-for="SalesDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

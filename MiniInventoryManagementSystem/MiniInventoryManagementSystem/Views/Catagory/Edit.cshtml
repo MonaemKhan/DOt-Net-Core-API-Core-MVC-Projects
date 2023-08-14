@@ -1,0 +1,41 @@
+﻿@model MiniInventoryManagementSystem.Models.Catagory
+
+@{
+    ViewData["Title"] = "Edit "+Model.CatagoryName;
+}
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
+
+<div class="card pt-5 pb-1">
+    <h1 class="text-center">Edit Catagory Name of @Model.CatagoryName</h1>
+    <div class="row ms-5">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CatagoryId" />
+                <div class="form-group">
+                    <label asp-for="CatagoryName" class="control-label"></label>
+                    <input asp-for="CatagoryName" class="form-control" />
+                    <span asp-validation-for="CatagoryName" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2 mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ms-2">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Catagory List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

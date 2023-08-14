@@ -1,0 +1,51 @@
+﻿@model MiniInventoryManagementSystem.Models.Supplyer
+
+@{
+    ViewData["Title"] = $"Edit {Model.SupplyerName} Info";
+}
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
+
+<div class="card pt-5 pb-1">
+    <h1 class="text-center">Edit Supplyer @Model.SupplyerName's Info</h1>
+    <div class="row ms-5">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="SupplyerId" />
+                <div class="form-group">
+                    <label asp-for="SupplyerName" class="control-label"></label>
+                    <input asp-for="SupplyerName" class="form-control" />
+                    <span asp-validation-for="SupplyerName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SupplyerAddress" class="control-label"></label>
+                    <input asp-for="SupplyerAddress" class="form-control" />
+                    <span asp-validation-for="SupplyerAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SupplyerPhone" class="control-label"></label>
+                    <input asp-for="SupplyerPhone" class="form-control" />
+                    <span asp-validation-for="SupplyerPhone" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2 mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="ms-2">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Supplyer List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

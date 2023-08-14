@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.Purches_And_PurchesDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchesDetails_ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.catagoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchesDetailsPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchesDetailsQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchesId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchesDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purches_SupplyerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SupplyerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesDetails_ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.catagoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesDetailsPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesDetailsQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Purches_SupplyerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplyerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PurchesDetailsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PurchesDetailsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PurchesDetailsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

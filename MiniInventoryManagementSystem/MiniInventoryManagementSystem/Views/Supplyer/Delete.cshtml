@@ -1,0 +1,47 @@
+﻿@model MiniInventoryManagementSystem.Models.Supplyer
+
+@{
+    ViewData["Title"] = $"Delete {Model.SupplyerName} Info";
+}
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
+
+<div class="card">
+    <h3 class="ms-5 mt-2">Are you sure you want to delete supplyer @Model.SupplyerName's Info?</h3>
+    <div class="ms-5 mb-3">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SupplyerName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SupplyerName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SupplyerAddress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SupplyerAddress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.SupplyerPhone)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.SupplyerPhone)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="SupplyerId" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    </div>
+    <div class="ms-2">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Supplyer List</a>
+    </div>
+</div>

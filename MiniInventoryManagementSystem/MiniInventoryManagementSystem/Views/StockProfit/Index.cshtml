@@ -1,0 +1,83 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.StockAndProfitOverview>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    table,th,td{
+        border:1px solid darkgray;
+    }
+</style>
+
+<h1>Index</h1>
+<table class="table table-hover text-center">
+    <thead>
+        <tr>
+            <th rowspan="2">
+                Catagory
+            </th rowspan="2">
+            <th rowspan="2">
+                Product
+            </th>
+            <th colspan="2">
+                Purches
+            </th>           
+            <th colspan="2">
+                Sales
+            </th>
+            <th colspan="2">
+                Total Price of
+            </th>
+            <th rowspan="2">
+                Profit/Loss
+            </th>
+            <th rowspan="2">
+                Available Product
+            </th>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Sale Item</th>
+            <th>Purches Item</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatagoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesDetailsQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PurchesDetailsPrice)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesDetailsQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesDetailsPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesDetailsTotalPrice)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParchesDetailsTotalPrice)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

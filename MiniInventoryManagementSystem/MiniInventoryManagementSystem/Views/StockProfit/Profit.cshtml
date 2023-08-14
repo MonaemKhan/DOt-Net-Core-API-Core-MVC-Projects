@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.Profit>
+
+@{
+    ViewData["Title"] = "Profit";
+}
+
+<h1>Profit</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CatagoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalSaleDetailsQuentity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParchesDetailsTotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesDetailsTotalPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Net_Profit)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatagoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.TotalSaleDetailsQuentity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParchesDetailsTotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesDetailsTotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Net_Profit)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

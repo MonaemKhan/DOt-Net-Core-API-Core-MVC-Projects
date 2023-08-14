@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.Sales_and_SalesDetails>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-hover text-center table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>SN</th>
+            <th>
+                Product
+            </th>
+            <th>
+                catagory
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                SalesMan
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Price(Per Pis)
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th>
+                Sales Date
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>SN</td>
+            <td>
+                    @item.SalesDetails_ProductName
+            </td>
+            <td>
+                    @item.catagoryName
+            </td>
+            <td>
+                    @item.Sales_CustomerName
+            </td>
+            <td>
+                    @item.Sales_SalesManName
+            </td>
+            <td>
+                    @item.SalesDetailsQuantity
+            </td>
+            <td>
+                    @item.SalesDetailsPrice
+            </td>
+            <td>
+                    @item.TotalPrice
+            </td>
+            <td>
+                    @item.SalesDate
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SalesDetailsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SalesDetailsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SalesDetailsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.Supplyer>
+
+@{
+    ViewData["Title"] = "Records of Supplyer";
+}
+
+<style>
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    table, tr, th, td {
+        /*border: 3px solid lightgrey;*/
+        text-align: center;
+    }
+
+    thead {
+        background-color: dimgrey;
+        color: ghostwhite;
+    }
+
+    .addCatagory {
+        text-align: right;
+    }
+
+        .addCatagory a {
+            border-radius: 10px;
+        }
+</style>
+
+<div class="card p-5">
+    <h1 class="text-center">Record's of All Supplyer</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    SN
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplyerId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplyerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplyerAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SupplyerPhone)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    @{
+                        i++;
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplyerId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplyerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplyerAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SupplyerPhone)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SupplyerId"><i class="bi bi-pencil-square text-danger fs-5"></i></a> ||
+                        @*<a asp-action="Details" asp-route-id="@item.SupplyerId"><i class="bi bi-person-vcard text-danger fs-5"></i></a> |*@
+                        <a asp-action="Delete" asp-route-id="@item.SupplyerId"><i class="bi bi-trash text-danger fs-5"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p class="addCatagory me-1">
+        <a asp-action="Create" class="btn btn-primary fs-5">Add New Supplyer</a>
+    </p>
+</div>

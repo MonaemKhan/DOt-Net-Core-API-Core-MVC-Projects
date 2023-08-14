@@ -1,0 +1,78 @@
+﻿@model MiniInventoryManagementSystem.Models.SupportClass.Purches_And_PurchesDetails
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Purches_And_PurchesDetails</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchesDetails_ProductId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchesDetails_ProductId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.catagoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.catagoryName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchesDetailsPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchesDetailsPrice)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchesDetailsQuantity)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchesDetailsQuantity)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchesId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchesId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchesDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchesDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Purches_SupplyerId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Purches_SupplyerId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SupplyerName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SupplyerName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.PurchesDetailsId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
