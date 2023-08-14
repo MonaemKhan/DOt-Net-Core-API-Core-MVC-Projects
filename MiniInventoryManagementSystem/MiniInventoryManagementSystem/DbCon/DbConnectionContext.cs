@@ -20,6 +20,6 @@ namespace MiniInventoryManagementSystem.DbCon
         public DbSet<SalesDetails> SalesDetailsTable { set; get; }
 
         public DbSet<Purches> PurchesTable { set; get; }
-        public DbSet<PurchesDetails> PurchesDetailsTable { set; get; }     
+        public DbSet<PurchesDetails> PurchesDetailsTable { set; get; } 
     }
 }

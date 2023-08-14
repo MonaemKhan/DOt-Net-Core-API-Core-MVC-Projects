@@ -10693,11 +10693,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\khanm\\OneDrive\\Desktop\\Dot-Net-C-Sharpe-Practice\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem.csproj",
+      "projectUniqueName": "C:\\Users\\khanm\\OneDrive\\Desktop\\DOt-Net-Core-API-Core-MVC-Projects\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem.csproj",
       "projectName": "MiniInventoryManagementSystem",
-      "projectPath": "C:\\Users\\khanm\\OneDrive\\Desktop\\Dot-Net-C-Sharpe-Practice\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem.csproj",
+      "projectPath": "C:\\Users\\khanm\\OneDrive\\Desktop\\DOt-Net-Core-API-Core-MVC-Projects\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem.csproj",
       "packagesPath": "C:\\Users\\khanm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\khanm\\OneDrive\\Desktop\\Dot-Net-C-Sharpe-Practice\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem\\obj\\",
+      "outputPath": "C:\\Users\\khanm\\OneDrive\\Desktop\\DOt-Net-Core-API-Core-MVC-Projects\\MiniInventoryManagementSystem\\MiniInventoryManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
