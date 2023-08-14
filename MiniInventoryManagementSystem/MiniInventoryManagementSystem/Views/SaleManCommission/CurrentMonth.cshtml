@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.SalesManCommission>
+
+@{
+    ViewData["Title"] = "Index";
+    string date = DateTime.Now.ToString("dd-MM-yyyy");
+    string[] month = { "January", "February", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December" };
+    int mon = Convert.ToInt32(date.Substring(3, 2));
+    string monthName = month[mon - 1];
+    string year = date.Substring(6, 4);
+}
+<h1>SalesMan's Commission Of @monthName, @year</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                SalesMan
+            </th>
+            <th>
+                Designation
+            </th>
+            <th>
+                Item Sale
+            </th>
+            <th>
+                Commision(TK)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesManName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesManDesignation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentMonthTotalSales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CureentMonthCommission)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

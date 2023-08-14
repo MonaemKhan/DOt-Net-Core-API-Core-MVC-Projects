@@ -13,6 +13,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
+
                 @*for logo*@
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images/Monaem khan logo.png" id="Imagelogo" />
@@ -24,15 +25,36 @@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
                         @*for home*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        @*for Stock*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SaleManCommission" asp-action="Index">SaleMan Commission</a>
+                        @*SalesMan*@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                SalesMan
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @*for Salesman*@
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="SalesMan" asp-action="Index">View All SalesMan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="SalesMan" asp-action="Create">Add New SalesMan</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="SaleManCommission" asp-action="CurrentDate">SaleMan Daily Commission</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="SaleManCommission" asp-action="CurrentMonth">SaleMan Current Month Commission</a>
+                                </li>
+                            </ul>
                         </li>
+
+                        
 
                         @*for Stock*@
                         <li class="nav-item">
@@ -59,10 +81,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Supplyer" asp-action="Index">Supllyer</a>
                         </li>
 
-                        @*for Salesman*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="SalesMan" asp-action="Index">SalesMan</a>
-                        </li>
+                        
 
                         @*for make a Sales*@
                         <li class="nav-item">

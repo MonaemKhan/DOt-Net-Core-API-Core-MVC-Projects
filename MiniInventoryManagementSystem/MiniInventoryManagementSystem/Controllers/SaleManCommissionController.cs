@@ -12,7 +12,7 @@ namespace MiniInventoryManagementSystem.Controllers
         {
             _context = context;
         }
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> CurrentMonth()
         {
             var salesman = await _context.SalesManTable.ToListAsync();
             var sales = await _context.SalesTable.ToListAsync();
@@ -25,45 +25,101 @@ namespace MiniInventoryManagementSystem.Controllers
                 ProductId = gr.Key,
                 AveragePurches = gr.Average(p => p.PurchesDetailsPrice)
             });
-            
-            var item1 = from sm in salesman
-                      join s in sales on sm.SalesManId equals s.Sales_SalesManId
-                      join sd in salesdetails on s.SalesId equals sd.SalesDetails_SalesId
-                      join pro in product on sd.SalesDetails_ProductId equals pro.ProductId
-                      join e in ex on pro.ProductId equals e.ProductId
-                      select new
-                      {
-                          sm.SalesManId,
-                          sm.SalesManName,
-                          sm.SalesManDesignation,
-                          sd.SalesDetailsPrice,
-                          sd.SalesDetailsQuantity,
-                          pro.ProductId,
-                          pro.ProductName,
-                          e.AveragePurches
-                      };
 
-            var item2 = item1.GroupBy(p => p.ProductId & p.SalesManId).Select(gr => new
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            //current momth calculation start
+            var CurrentMonth_01 = from sm in salesman
+                                  join s in sales on sm.SalesManId equals s.Sales_SalesManId
+                                  join sd in salesdetails on s.SalesId equals sd.SalesDetails_SalesId
+                                  join pro in product on sd.SalesDetails_ProductId equals pro.ProductId
+                                  join e in ex on pro.ProductId equals e.ProductId
+                                  where (s.SalesDate.Substring(0, 4) == date.Substring(0, 4) && s.SalesDate.Substring(5, 2) == date.Substring(5, 2))
+                                  select new
+                                  {
+                                      sm.SalesManId,
+                                      sm.SalesManName,
+                                      sm.SalesManDesignation,
+                                      sd.SalesDetailsPrice,
+                                      sd.SalesDetailsQuantity,
+                                      e.AveragePurches
+                                  };
+
+            var CurrentMonth_02 = CurrentMonth_01.GroupBy(p => p.SalesManId).Select(gr => new
             {
-                ProductName = gr.Select(p=>p.ProductName),
-                SalesManName = gr.Select(p=>p.SalesManName),
-                SalesManDesignation = gr.Select(p => p.SalesManDesignation),
-                TotalSalesDetailsPrice = gr.Sum(p => p.SalesDetailsPrice * p.SalesDetailsQuantity),
-                TotalSalesDetailsQuantity = gr.Sum(p => p.SalesDetailsQuantity),
-                TotalPurchesDetailsPrice = gr.Sum(p => p.SalesDetailsQuantity * p.AveragePurches)
+                SalesManId = gr.Key,
+                SalesManName = gr.Select(p => p.SalesManName).ToArray()[0],
+                SalesManDesignation = gr.Select(p => p.SalesManDesignation).ToArray()[0],
+                CurrentMonthSalePrice = gr.Sum(p => p.SalesDetailsPrice * p.SalesDetailsQuantity),
+                CurrentMonthSaleQuentity = gr.Sum(p => p.SalesDetailsQuantity),
+                CurrrentMonthPurchesPrice = gr.Sum(p => p.SalesDetailsQuantity * p.AveragePurches)
             });
+
             List<SalesManCommission> smc = new List<SalesManCommission>();
-            foreach(var data in item2)
+            foreach (var data in CurrentMonth_02)
             {
                 smc.Add(new SalesManCommission()
                 {
-                    ProductName = data.ProductName.ToArray()[0],
-                    SalesManName = data.SalesManName.ToArray()[0],
-                    SalesManDesignation = data.SalesManDesignation.ToArray()[0],
-                    TotalSalesDetailsPrice = data.TotalSalesDetailsPrice,
-                    TotalSalesDetailsQuantity = data.TotalSalesDetailsQuantity,
-                    TotalPurchesDetailsPrice = data.TotalPurchesDetailsPrice,
-                    Commission = (data.TotalSalesDetailsPrice- data.TotalPurchesDetailsPrice) *0.10
+                    SalesManName = data.SalesManName,
+                    SalesManDesignation = data.SalesManDesignation,
+                    CurrentMonthTotalSales = data.CurrentMonthSaleQuentity,
+                    CureentMonthCommission = (data.CurrentMonthSalePrice-data.CurrrentMonthPurchesPrice)*0.10
+                });
+            }
+            return View(smc);
+        }
+        public async Task<ActionResult> CurrentDate()
+        {
+            var salesman = await _context.SalesManTable.ToListAsync();
+            var sales = await _context.SalesTable.ToListAsync();
+            var salesdetails = await _context.SalesDetailsTable.ToListAsync();
+            var purchesdetails = await _context.PurchesDetailsTable.ToListAsync();
+            var product = await _context.ProductTable.ToListAsync();
+
+            var ex = purchesdetails.GroupBy(p => p.PurchesDetails_ProductId).Select(gr => new
+            {
+                ProductId = gr.Key,
+                AveragePurches = gr.Average(p => p.PurchesDetailsPrice)
+            });
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            //current date calculation
+            var CurrentDate_01 = from sm in salesman
+                                  join s in sales on sm.SalesManId equals s.Sales_SalesManId
+                                  join sd in salesdetails on s.SalesId equals sd.SalesDetails_SalesId
+                                  join pro in product on sd.SalesDetails_ProductId equals pro.ProductId
+                                  join e in ex on pro.ProductId equals e.ProductId
+                                  where(s.SalesDate == date)
+                                  select new
+                                  {
+                                      sm.SalesManId,
+                                      sm.SalesManName,
+                                      sm.SalesManDesignation,
+                                      sd.SalesDetailsPrice,
+                                      sd.SalesDetailsQuantity,
+                                      e.AveragePurches
+                                  };
+
+            var CurrentDate_02 = CurrentDate_01.GroupBy(p => p.SalesManId).Select(gr => new
+            {
+                SalesManId = gr.Key,
+                SalesManName = gr.Select(p => p.SalesManName).ToArray()[0],
+                SalesManDesignation = gr.Select(p => p.SalesManDesignation).ToArray()[0],
+                CurrentDateSalePrice = gr.Sum(p => p.SalesDetailsPrice * p.SalesDetailsQuantity),
+                CurrentDateSaleQuentity = gr.Sum(p => p.SalesDetailsQuantity),
+                CurrentDatePurchesPrice = gr.Sum(p => p.SalesDetailsQuantity * p.AveragePurches)
+            });
+                       
+            List < SalesManCommission > smc = new List<SalesManCommission>();
+            foreach(var data in CurrentDate_02)
+            {
+                smc.Add(new SalesManCommission()
+                {
+                    SalesManName = data.SalesManName,
+                    SalesManDesignation = data.SalesManDesignation,
+                    CurrentdateTotalSales= data.CurrentDateSaleQuentity,
+                    CurrentDateCommission = (data.CurrentDateSalePrice-data.CurrentDatePurchesPrice)*0.10
                 });
             }
             return View(smc);

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.SalesManCommission>
+
+@{
+    ViewData["Title"] = "Index";
+    string date = DateTime.Now.ToString("dd-MM-yyyy");
+}
+<h1>SalesMan's Commission of @date</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                SalesMan
+            </th>
+            <th>
+                Designation
+            </th>
+            <th>
+                Item Sale
+            </th>
+            <th>
+                Commision(TK)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesManName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesManDesignation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentdateTotalSales)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentDateCommission)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
