@@ -10,143 +10,130 @@
     <link rel="stylesheet" href="~/MiniInventoryManagementSystem.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
+    <div class="d-flex" style="height:90vh;">
+        <div class="container-fluid d-flex flex-row ps-5 pt-5 fs-3">
+            <div class="d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav">
+                    @*for logo*@
+                    <li>
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="~/images/Monaem khan logo.png" id="Imagelogo" />
+                        </a>
+                    </li>
+                    @*for home*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
 
-                @*for logo*@
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/images/Monaem khan logo.png" id="Imagelogo" />
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-
-                        @*for home*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-
-                        @*SalesMan*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                SalesMan
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @*for Salesman*@
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="SalesMan" asp-action="Index">View All SalesMan</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="SalesMan" asp-action="Create">Add New SalesMan</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="SaleManCommission" asp-action="CurrentDate">SaleMan Daily Commission</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="SaleManCommission" asp-action="CurrentMonth">SaleMan Current Month Commission</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        
-
-                        @*for Stock*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="StockProfit" asp-action="Stock">Stock</a>
-                        </li>
-
-                        @*for Profit*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="StockProfit" asp-action="Profit">Profit</a>
-                        </li>
-
-                        @*for OverAllView*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="StockProfit" asp-action="Index">Overall View</a>
-                        </li>
-
-                        @*for Purches*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Purches" asp-action="Index">Purches</a>
-                        </li>
-
-                        @*for Supplyer*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Supplyer" asp-action="Index">Supllyer</a>
-                        </li>
-
-                        
-
-                        @*for make a Sales*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="Create">Make a Sales</a>
-                        </li>
-
-                        @*for SalesDetails*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="Index">View Sell Details</a>
-                        </li>
-
-                        @*for catagory*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Catagory
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Catagory" asp-action="Index">View All Catagory</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Catagory" asp-action="Create">Create New Catagory</a></li>
-                            </ul>
-                        </li>
-
-                        @*for customer*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Customer
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Customer" asp-action="Index">View All Customer</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Customer" asp-action="Create">Create New Customer</a></li>
-                            </ul>
-                        </li>
-
-                        @*for product*@
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                Product
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">View All Product</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Create">Create New Product</a></li>
-                            </ul>
-                        </li>
+                    @*SalesMan*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            SalesMan
+                        </a>
+                        <ul class="dropdown-menu ps-2 text-justify" aria-labelledby="navbarDropdown">
+                            @*for Salesman*@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SalesMan" asp-action="Index">View All SalesMan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SalesMan" asp-action="Create">Add New SalesMan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SaleManCommission" asp-action="CurrentDate">SaleMan Daily Commission</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="SaleManCommission" asp-action="CurrentMonth">SaleMan Current Month Commission</a>
+                            </li>
+                        </ul>
+                    </li>
 
 
-                    </ul>
-                </div>
+
+                    @*for Stock*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="StockProfit" asp-action="Stock">Stock</a>
+                    </li>
+
+                    @*for Profit*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="StockProfit" asp-action="Profit">Profit</a>
+                    </li>
+
+                    @*for OverAllView*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="StockProfit" asp-action="Index">Overall View</a>
+                    </li>
+
+                    @*for Purches*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Purches" asp-action="Index">Purches</a>
+                    </li>
+
+                    @*for Supplyer*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Supplyer" asp-action="Index">Supllyer</a>
+                    </li>
+
+
+
+                    @*for make a Sales*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="Create">Make a Sales</a>
+                    </li>
+
+                    @*for SalesDetails*@
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Sales" asp-action="Index">View Sell Details</a>
+                    </li>
+
+                    @*for catagory*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Catagory
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Catagory" asp-action="Index">View All Catagory</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Catagory" asp-action="Create">Create New Catagory</a></li>
+                        </ul>
+                    </li>
+
+                    @*for customer*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Customer
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Customer" asp-action="Index">View All Customer</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Customer" asp-action="Create">Create New Customer</a></li>
+                        </ul>
+                    </li>
+
+                    @*for product*@
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            Product
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Index">View All Product</a></li>
+                            <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Create">Create New Product</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - MiniInventoryManagementSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <div class="col-9 mt-5 me-5">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+     <div class="container">
+            &copy; 2023 - MiniInventoryManagementSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
