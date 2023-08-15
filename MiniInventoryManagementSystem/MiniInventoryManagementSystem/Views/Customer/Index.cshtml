@@ -3,23 +3,9 @@
 @{
     ViewData["Title"] = "Index of Customer";
 }
-
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint.css")>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint_jQuery.css")>
 <style>
-    .card {
-        border: 1px solid gold;
-        border-radius: 10px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    }
-
-    table, tr, th, td {
-        text-align: center;
-    }
-
-    thead {
-        background-color: dimgrey;
-        color: ghostwhite;
-    }
-
     .addCatagory {
         text-align: right;
     }
@@ -29,71 +15,87 @@
         }
 </style>
 
-<div class="card pt-5 ps-5 pe-5 pb-1">
-    <h1 class="text-center">All Record's Customer</h1>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>
-                    SN
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerAddress)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerPhone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CustomerEmail)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                int i = 1;
-            }
-            @foreach (var item in Model)
-            {
+<div class="p-4 pb-1">
+    <h1 class="text-center">All Record's of Customer</h1>
+    <div class="row mt-5 mb-4">
+        <table id="CustomDataTable" class="table display" style="width:100%">
+            <thead>
                 <tr>
-                    <td>
-                        @i
-                    </td>
-                    @{
-                        i++;
-                    }
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerAddress)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerPhone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CustomerEmail)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.CustomerId"><i class="bi bi-pencil-square text-danger fs-5"></i></a> |
-                        <a asp-action="Details" asp-route-id="@item.CustomerId"><i class="bi bi-person-vcard text-danger fs-5"></i></a> |
-                        <a asp-action="Delete" asp-route-id="@item.CustomerId"><i class="bi bi-trash text-danger fs-5"></i></a>
-                    </td>
+                    <th>SN</th>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th style=" display: none;"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-
-    <p class="addCatagory me-1">
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @i
+                        </td>
+                        @{
+                            i++;
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerPhone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CustomerEmail)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.CustomerId"><i class="bi bi-pencil-square text-danger fs-5"></i></a> |
+                            <a asp-action="Details" asp-route-id="@item.CustomerId"><i class="bi bi-person-vcard text-danger fs-5"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@item.CustomerId"><i class="bi bi-trash text-danger fs-5"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p class="addCatagory">
         <a asp-action="Create" class="btn btn-primary fs-5">Add New Customer</a>
     </p>
 </div>
+
+@section Scripts {
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery2.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery3.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/Datatable_JQuery4.js")></script>
+    <script>
+        $(document).ready(function () {
+            $('#CustomDataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ],
+            });
+        });
+    </script>
+}

@@ -5,26 +5,25 @@
 
 <style>
     .card {
-        border: 1px solid gold;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 </style>
 
-<div class="card">
-    <h3 class="ms-5">Are you sure you want to delete @Model.CatagoryName Catagory?</h3>
+<div class="card pt-5">
+    <h3 class="ms-5">Are you sure? you want to delete @Model.CatagoryName Catagory?</h3>
     <div class="ms-5 mb-3">
         <dl class="row">
-            <dt class="col-sm-2">
+            <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.CatagoryId)
-            </dt>
-            <dd class="col-sm-10">
+            </dt>:
+            <dd class="col-sm-8">
                 @Html.DisplayFor(model => model.CatagoryId)
             </dd>
-            <dt class="col-sm-2">
+            <dt class="col-sm-3">
                 @Html.DisplayNameFor(model => model.CatagoryName)
-            </dt>
-            <dd class="col-sm-10">
+            </dt>:
+            <dd class="col-sm-8">
                 @Html.DisplayFor(model => model.CatagoryName)
             </dd>
         </dl>

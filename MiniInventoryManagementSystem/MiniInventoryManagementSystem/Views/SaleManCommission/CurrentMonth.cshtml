@@ -8,42 +8,85 @@
     string monthName = month[mon - 1];
     string year = date.Substring(6, 4);
 }
-<h1>SalesMan's Commission Of @monthName, @year</h1>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint.css")>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint_jQuery.css")>
+<style>
+    .addCatagory {
+        text-align: right;
+    }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                SalesMan
-            </th>
-            <th>
-                Designation
-            </th>
-            <th>
-                Item Sale
-            </th>
-            <th>
-                Commision(TK)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SalesManName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SalesManDesignation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CurrentMonthTotalSales)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CureentMonthCommission)
-                </td>
-            </tr>
+        .addCatagory a {
+            border-radius: 10px;
         }
-    </tbody>
-</table>
+</style>
+
+<div class="p-4 pb-1">
+    <h3 class="text-center">SalesMan's Commission Of @monthName, @year</h3>
+    <div class="row mt-3 mb-4">
+        <table id="CustomDataTable" class="table table-hover" style="width:100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th>SN</th>
+                    <th>
+                        SalesMan
+                    </th>
+                    <th>
+                        Designation
+                    </th>
+                    <th>
+                        Item Sale
+                    </th>
+                    <th>
+                        Commision(TK)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        @{
+                            i++;
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalesManName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SalesManDesignation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentMonthTotalSales)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CureentMonthCommission)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @*<p class="addCatagory me-1">
+    <a asp-action="Create" class="btn btn-primary fs-5">Add New Catagory</a>
+    </p>*@
+</div>
+
+@section Scripts {
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery2.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery3.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/Datatable_JQuery4.js")></script>
+    <script>
+        $(document).ready(function () {
+            $('#CustomDataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ],
+            });
+        });
+    </script>
+}
