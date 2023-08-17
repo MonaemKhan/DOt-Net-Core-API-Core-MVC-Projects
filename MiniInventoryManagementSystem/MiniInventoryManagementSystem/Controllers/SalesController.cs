@@ -68,12 +68,41 @@ namespace MiniInventoryManagementSystem.Controllers
             ViewBag.CustomerList = await _context.CustomerTable.ToListAsync();
             ViewBag.SalesManList = await _context.SalesManTable.ToListAsync();
             ViewBag.ProductList = await _context.ProductTable.ToListAsync();
+            ViewBag.IsError = false;
             return View();
         }
 
         [HttpPost]
         public async Task<ActionResult> Create(Sales_and_SalesDetails ssd)
         {
+            //for stock
+            var product = await _context.ProductTable.ToListAsync();
+            var purches_details = await _context.PurchesDetailsTable.ToListAsync();
+            var sales_details = await _context.SalesDetailsTable.ToListAsync();
+
+            var item = from pro in product
+                       join pd in purches_details on pro.ProductId equals pd.PurchesDetails_ProductId into purchesGroup
+                       join sd in sales_details on pro.ProductId equals sd.SalesDetails_ProductId into salesGroup
+                       where(pro.ProductId == ssd.SalesDetails_ProductId)
+                       select new
+                       {
+                           Stock = (purchesGroup.Sum(p => p.PurchesDetailsQuantity)) - (salesGroup.Sum(p => p.SalesDetailsQuantity)),
+                       };
+            foreach(var i in item)
+            {
+                if(i.Stock < ssd.SalesDetailsQuantity)
+                {
+                    ViewBag.CustomerList = await _context.CustomerTable.ToListAsync();
+                    ViewBag.SalesManList = await _context.SalesManTable.ToListAsync();
+                    ViewBag.ProductList = await _context.ProductTable.ToListAsync();
+                    ViewBag.IsError = true;
+                    ViewBag.errorType = "Stock Out";
+                    ViewBag.errorMassage = "Product Is Out Of Stock";
+                    return View(ssd);
+                }
+            }
+
+
             List<Sales> sale = new List<Sales>()
             {
                 new Sales()
@@ -97,25 +126,6 @@ namespace MiniInventoryManagementSystem.Controllers
                 }
             };
             await _context.SalesDetailsTable.AddAsync(salesDetails[0]);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> SalesAndSalesDetails(Sales sale)
-        {   
-            await _context.SalesTable.AddAsync(sale);
-            await _context.SaveChangesAsync();
-            ViewBag.ProductList = await _context.ProductTable.ToListAsync();
-            ViewBag.SalesDetails_SalesId = sale.SalesId;
-
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> SalesDetails(SalesDetails salesdetails)
-        {
-            await _context.SalesDetailsTable.AddAsync(salesdetails);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -280,6 +290,126 @@ namespace MiniInventoryManagementSystem.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        //current date sale
+        public async Task<ActionResult> CurrentDateSale()
+        {
+            List<Sales> sale = await _context.SalesTable.ToListAsync();
+            List<Customer> customer = await _context.CustomerTable.ToListAsync();
+            List<SalesMan> salesman = await _context.SalesManTable.ToListAsync();
+            List<Product> product = await _context.ProductTable.ToListAsync();
+            List<SalesDetails> salesdetails = await _context.SalesDetailsTable.ToListAsync();
+            List<Catagory> catagories = await _context.CatagoryTable.ToListAsync();
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var item = from sa in sale
+                       join cust in customer on sa.Sales_CustomerId equals cust.CustomerId
+                       join sm in salesman on sa.Sales_SalesManId equals sm.SalesManId
+                       join sd in salesdetails on sa.SalesId equals sd.SalesDetails_SalesId
+                       join p in product on sd.SalesDetails_ProductId equals p.ProductId
+                       join ca in catagories on p.Product_CatagoryId equals ca.CatagoryId
+                       where (sa.SalesDate == date)
+                       select new
+                       {
+                           sa.SalesId,
+                           sa.Sales_SalesManId,
+                           sa.Sales_CustomerId,
+                           sa.SalesDate,
+                           sm.SalesManName,
+                           cust.CustomerName,
+                           sd.SalesDetailsId,
+                           sd.SalesDetailsPrice,
+                           sd.SalesDetailsQuantity,
+                           sd.SalesDetails_ProductId,
+                           p.ProductName,
+                           ca.CatagoryName
+                       };
+            List<Sales_and_SalesDetails> salesandsalesdetails = new List<Sales_and_SalesDetails>();
+            foreach (var da in item)
+            {
+                salesandsalesdetails.Add(
+                    new Sales_and_SalesDetails()
+                    {
+                        SalesDetailsId = da.SalesDetailsId,
+                        SalesDetailsPrice = da.SalesDetailsPrice,
+                        SalesDetailsQuantity = da.SalesDetailsQuantity,
+                        SalesDetails_ProductId = da.SalesDetails_ProductId,
+                        SalesDetails_ProductName = da.ProductName,
+                        catagoryName = da.CatagoryName,
+
+                        //sales
+                        SalesId = da.SalesId,
+                        Sales_SalesManId = da.Sales_SalesManId,
+                        Sales_SalesManName = da.SalesManName,
+                        Sales_CustomerId = da.Sales_CustomerId,
+                        Sales_CustomerName = da.CustomerName,
+                        SalesDate = da.SalesDate,
+                        TotalPrice = da.SalesDetailsPrice * da.SalesDetailsQuantity
+                    });
+            }
+            return View(salesandsalesdetails);
+        }
+
+        //current month
+        public async Task<ActionResult> CurrentMonthSale()
+        {
+            List<Sales> sale = await _context.SalesTable.ToListAsync();
+            List<Customer> customer = await _context.CustomerTable.ToListAsync();
+            List<SalesMan> salesman = await _context.SalesManTable.ToListAsync();
+            List<Product> product = await _context.ProductTable.ToListAsync();
+            List<SalesDetails> salesdetails = await _context.SalesDetailsTable.ToListAsync();
+            List<Catagory> catagories = await _context.CatagoryTable.ToListAsync();
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var item = from sa in sale
+                       join cust in customer on sa.Sales_CustomerId equals cust.CustomerId
+                       join sm in salesman on sa.Sales_SalesManId equals sm.SalesManId
+                       join sd in salesdetails on sa.SalesId equals sd.SalesDetails_SalesId
+                       join p in product on sd.SalesDetails_ProductId equals p.ProductId
+                       join ca in catagories on p.Product_CatagoryId equals ca.CatagoryId
+                       where (sa.SalesDate.Substring(0, 4) == date.Substring(0, 4) && sa.SalesDate.Substring(5, 2) == date.Substring(5, 2))
+                       select new
+                       {
+                           sa.SalesId,
+                           sa.Sales_SalesManId,
+                           sa.Sales_CustomerId,
+                           sa.SalesDate,
+                           sm.SalesManName,
+                           cust.CustomerName,
+                           sd.SalesDetailsId,
+                           sd.SalesDetailsPrice,
+                           sd.SalesDetailsQuantity,
+                           sd.SalesDetails_ProductId,
+                           p.ProductName,
+                           ca.CatagoryName
+                       };
+            List<Sales_and_SalesDetails> salesandsalesdetails = new List<Sales_and_SalesDetails>();
+            foreach (var da in item)
+            {
+                salesandsalesdetails.Add(
+                    new Sales_and_SalesDetails()
+                    {
+                        SalesDetailsId = da.SalesDetailsId,
+                        SalesDetailsPrice = da.SalesDetailsPrice,
+                        SalesDetailsQuantity = da.SalesDetailsQuantity,
+                        SalesDetails_ProductId = da.SalesDetails_ProductId,
+                        SalesDetails_ProductName = da.ProductName,
+                        catagoryName = da.CatagoryName,
+
+                        //sales
+                        SalesId = da.SalesId,
+                        Sales_SalesManId = da.Sales_SalesManId,
+                        Sales_SalesManName = da.SalesManName,
+                        Sales_CustomerId = da.Sales_CustomerId,
+                        Sales_CustomerName = da.CustomerName,
+                        SalesDate = da.SalesDate,
+                        TotalPrice = da.SalesDetailsPrice * da.SalesDetailsQuantity
+                    });
+            }
+            return View(salesandsalesdetails);
         }
     }
 }

@@ -159,5 +159,120 @@ namespace MiniInventoryManagementSystem.Controllers
             return stk;
         }
         //stock ends
+
+
+        //daily profit
+        public async Task<ActionResult> DailyProfit()
+        {
+            var catagory = await _context.CatagoryTable.ToListAsync();
+            var product = await _context.ProductTable.ToListAsync();
+            var purches_details = await _context.PurchesDetailsTable.ToListAsync();
+            var sales_details = await _context.SalesDetailsTable.ToListAsync();
+            var sale = await _context.SalesTable.ToListAsync();
+            var ex = purches_details.GroupBy(p => p.PurchesDetails_ProductId).Select(gr => new
+            {
+                ProductId = gr.Key,
+                AveragePurches = gr.Average(p => p.PurchesDetailsPrice)
+            });
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var item = from pro in product
+                       join ca in catagory on pro.Product_CatagoryId equals ca.CatagoryId
+                       join e in ex on pro.ProductId equals e.ProductId
+                       join sd in sales_details on pro.ProductId equals sd.SalesDetails_ProductId
+                       join sa in sale on sd.SalesDetails_SalesId equals sa.SalesId
+                       where (sa.SalesDate == date)
+                       select new
+                       {
+                           pro.ProductId,
+                           pro.ProductName,
+                           ca.CatagoryName,
+                           sd.SalesDetailsPrice,
+                           sd.SalesDetailsQuantity,
+                           e.AveragePurches
+                       };
+
+            var item2 = item.GroupBy(p => p.ProductId).Select(gr => new
+            {
+                CatagoryName = gr.Select(p => p.CatagoryName).ToArray()[0],
+                ProductName = gr.Select(p => p.ProductName).ToArray()[0],
+                ParchesDetailsTotalPrice = gr.Sum(p => p.AveragePurches * p.SalesDetailsQuantity),
+                TotalSaleDetailsQuentity = gr.Sum(p => p.SalesDetailsQuantity),
+                SalesDetailsTotalPrice = gr.Sum(p => p.SalesDetailsQuantity * p.SalesDetailsPrice),
+            });
+
+            List<Profit> profit = new List<Profit>();
+            foreach (var d in item2)
+            {
+                profit.Add(new Profit()
+                {
+                    CatagoryName = d.CatagoryName,
+                    ProductName = d.ProductName,
+                    ParchesDetailsTotalPrice = d.ParchesDetailsTotalPrice,
+                    TotalSaleDetailsQuentity = d.TotalSaleDetailsQuentity,
+                    SalesDetailsTotalPrice = d.SalesDetailsTotalPrice,
+                    Net_Profit = d.SalesDetailsTotalPrice - d.ParchesDetailsTotalPrice
+                });
+            }
+            return View(profit);
+        }
+
+        //MonthlyProfit
+        public async Task<ActionResult> MonthlyProfit()
+        {
+            var catagory = await _context.CatagoryTable.ToListAsync();
+            var product = await _context.ProductTable.ToListAsync();
+            var purches_details = await _context.PurchesDetailsTable.ToListAsync();
+            var sales_details = await _context.SalesDetailsTable.ToListAsync();
+            var sale = await _context.SalesTable.ToListAsync();
+            var ex = purches_details.GroupBy(p => p.PurchesDetails_ProductId).Select(gr => new
+            {
+                ProductId = gr.Key,
+                AveragePurches = gr.Average(p => p.PurchesDetailsPrice)
+            });
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var item = from pro in product
+                       join ca in catagory on pro.Product_CatagoryId equals ca.CatagoryId
+                       join e in ex on pro.ProductId equals e.ProductId
+                       join sd in sales_details on pro.ProductId equals sd.SalesDetails_ProductId
+                       join sa in sale on sd.SalesDetails_SalesId equals sa.SalesId
+                       where (sa.SalesDate.Substring(0, 4) == date.Substring(0, 4) && sa.SalesDate.Substring(5, 2) == date.Substring(5, 2))
+                       select new
+                       {
+                           pro.ProductId,
+                           pro.ProductName,
+                           ca.CatagoryName,
+                           sd.SalesDetailsPrice,
+                           sd.SalesDetailsQuantity,
+                           e.AveragePurches
+                       };
+
+            var item2 = item.GroupBy(p => p.ProductId).Select(gr => new
+            {
+                CatagoryName = gr.Select(p => p.CatagoryName).ToArray()[0],
+                ProductName = gr.Select(p => p.ProductName).ToArray()[0],
+                ParchesDetailsTotalPrice = gr.Sum(p => p.AveragePurches * p.SalesDetailsQuantity),
+                TotalSaleDetailsQuentity = gr.Sum(p => p.SalesDetailsQuantity),
+                SalesDetailsTotalPrice = gr.Sum(p => p.SalesDetailsQuantity * p.SalesDetailsPrice),
+            });
+
+            List<Profit> profit = new List<Profit>();
+            foreach (var d in item2)
+            {
+                profit.Add(new Profit()
+                {
+                    CatagoryName = d.CatagoryName,
+                    ProductName = d.ProductName,
+                    ParchesDetailsTotalPrice = d.ParchesDetailsTotalPrice,
+                    TotalSaleDetailsQuentity = d.TotalSaleDetailsQuentity,
+                    SalesDetailsTotalPrice = d.SalesDetailsTotalPrice,
+                    Net_Profit = d.SalesDetailsTotalPrice - d.ParchesDetailsTotalPrice
+                });
+            }
+            return View(profit);
+        }
     }
 }

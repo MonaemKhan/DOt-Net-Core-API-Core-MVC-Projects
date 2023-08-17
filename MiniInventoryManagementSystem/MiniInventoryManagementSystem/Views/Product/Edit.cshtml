@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = $"Edit {Model.ProductName} info";
 }
-
+<link rel="stylesheet" href="@Url.Content("~/CustomStyle/SelectBox/SelectBoxDesign.css")">
 <style>
     .card {
         border: 1px solid gold;
@@ -26,12 +26,14 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Product_CatagoryId" class="control-label"></label>
-                    <select asp-for="Product_CatagoryId" class="form-control">
-                        @foreach (var item in ViewBag.CatagoryList)
-                        {
-                            <option value="@item.CatagoryId">@item.CatagoryName</option>
-                        }
-                    </select>
+                    <div class="selectItem">
+                        <select asp-for="Product_CatagoryId" class="form-control">
+                            @foreach (var item in ViewBag.CatagoryList)
+                            {
+                                <option value="@item.CatagoryId">@item.CatagoryName</option>
+                            }
+                        </select>
+                    </div>
                     <span asp-validation-for="Product_CatagoryId" class="text-danger"></span>
                 </div>
                 <div class="form-group mt-2 mb-3">

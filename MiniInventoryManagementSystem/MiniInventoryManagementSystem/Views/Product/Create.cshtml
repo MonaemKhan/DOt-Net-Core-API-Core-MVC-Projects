@@ -4,20 +4,20 @@
     ViewData["Title"] = "Create New Product";
     SupportClassErrorView errorview = TempData["errormessage"] as SupportClassErrorView;
 }
-
+<link rel="stylesheet" href="@Url.Content("~/CustomStyle/SelectBox/SelectBoxDesign.css")">
 <style>
     .card {
-        border: 1px solid gold;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 </style>
 
-@if (errorview != null && errorview.IsError)
+@if (ViewBag.IsError)
 {
-    <script>
-        alert(`@errorview.ErrorType\n @errorview.ErrorMessage`);
-    </script>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@ViewBag.errorType!</strong> @ViewBag.errorMassage.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 
 <div class="card pt-5 pb-1">
@@ -34,13 +34,15 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Product_CatagoryId" class="control-label"></label>
-                    <select asp-for="Product_CatagoryId" class="form-control">
-                        <option value="" selected>Chose One Option</option>
-                        @foreach (var item in ViewBag.CatagoryList)
-                        {
-                            <option value="@item.CatagoryId">@item.CatagoryName</option>
-                        }
-                    </select>
+                    <div class="selectItem">
+                        <select asp-for="Product_CatagoryId" class="form-control">
+                            <option value="" selected>Chose One Option</option>
+                            @foreach (var item in ViewBag.CatagoryList)
+                            {
+                                <option value="@item.CatagoryId">@item.CatagoryName</option>
+                            }
+                        </select>
+                    </div>
                     <span asp-validation-for="Product_CatagoryId" class="text-danger"></span>
                 </div>
                 <div class="form-group mt-2 mb-3">

@@ -1,0 +1,119 @@
+﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.Sales_and_SalesDetails>
+
+@{
+    string date = DateTime.Now.ToString("dd-MM-yyyy");
+    ViewData["Title"] = $"Sold Product of {@date}";
+}
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint.css")>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint_jQuery.css")>
+<style>
+    .addCatagory {
+        text-align: right;
+    }
+
+        .addCatagory a {
+            border-radius: 10px;
+        }
+</style>
+
+<div class="p-4 pb-1">
+    <h1 class="text-center">View Sales Details of @date</h1>
+    <div class="row mt-3 mb-4">
+        <table id="CustomDataTable" class="table table-hover" style="width:100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th>SN</th>
+                    <th>
+                        Product
+                    </th>
+                    <th>
+                        catagory
+                    </th>
+                    <th>
+                        Customer
+                    </th>
+                    <th>
+                        SalesMan
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Price(Per Pis)
+                    </th>
+                    <th>
+                        Total Price
+                    </th>
+                    <th>
+                        Sales Date
+                    </th>
+                    <th style=" display: none;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        @{
+                            i++;
+                        }
+                        <td>
+                            @item.SalesDetails_ProductName
+                        </td>
+                        <td>
+                            @item.catagoryName
+                        </td>
+                        <td>
+                            @item.Sales_CustomerName
+                        </td>
+                        <td>
+                            @item.Sales_SalesManName
+                        </td>
+                        <td>
+                            @item.SalesDetailsQuantity
+                        </td>
+                        <td>
+                            @item.SalesDetailsPrice
+                        </td>
+                        <td>
+                            @item.TotalPrice
+                        </td>
+                        <td>
+                            @item.SalesDate
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.SalesDetailsId" asp-route-actionane = "CurrentDateSale"><i class="bi bi-pencil-square text-danger"></i></a> |
+                            <a asp-action="Details" asp-route-id="@item.SalesDetailsId"><i class="bi bi-person-vcard text-danger"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@item.SalesDetailsId"><i class="bi bi-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @*<p class="addCatagory me-1">
+    <a asp-action="Create" class="btn btn-primary fs-5">Add New Catagory</a>
+    </p>*@
+</div>
+
+@section Scripts {
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery2.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery3.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/Datatable_JQuery4.js")></script>
+    <script>
+        $(document).ready(function () {
+            $('#CustomDataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ],
+            });
+        });
+    </script>
+}
+

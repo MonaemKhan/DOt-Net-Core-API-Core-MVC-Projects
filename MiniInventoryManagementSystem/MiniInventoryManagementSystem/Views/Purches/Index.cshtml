@@ -1,89 +1,119 @@
 ﻿@model IEnumerable<MiniInventoryManagementSystem.Models.SupportClass.Purches_And_PurchesDetails>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Purches Details";
 }
 
-<h1>Index</h1>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint.css")>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint_jQuery.css")>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PurchesDetails_ProductId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.catagoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PurchesDetailsPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PurchesDetailsQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PurchesId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PurchesDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Purches_SupplyerId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SupplyerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalPrice)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PurchesDetails_ProductId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.catagoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PurchesDetailsPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PurchesDetailsQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PurchesId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PurchesDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Purches_SupplyerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SupplyerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PurchesDetailsId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PurchesDetailsId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PurchesDetailsId">Delete</a>
-            </td>
-        </tr>
+
+<div class="p-4 pb-1">
+    <h1 class="text-center">View Purches Details</h1>
+    <div class="row mt-3 mb-4">
+        <table id="CustomDataTable" class="table table-hover" style="width:100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th>SN</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PurchesDetails_ProductId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.catagoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PurchesDetailsPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PurchesDetailsQuantity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PurchesId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PurchesDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Purches_SupplyerId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SupplyerName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@i</td>
+                        @{
+                            i++;
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchesDetails_ProductId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.catagoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchesDetailsPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchesDetailsQuantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchesId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchesDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Purches_SupplyerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SupplyerName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.PurchesDetailsId"><i class="bi bi-pencil-square text-danger"></i></a> |
+                            <a asp-action="Details" asp-route-id="@item.PurchesDetailsId"><i class="bi bi-person-vcard text-danger"></i></a> |
+                            <a asp-action="Delete" asp-route-id="@item.PurchesDetailsId"><i class="bi bi-trash text-danger"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery2.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery3.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/Datatable_JQuery4.js")></script>
+    <script>
+        $(document).ready(function () {
+            $('#CustomDataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ],
+            });
+        });
+    </script>
 }
-    </tbody>
-</table>

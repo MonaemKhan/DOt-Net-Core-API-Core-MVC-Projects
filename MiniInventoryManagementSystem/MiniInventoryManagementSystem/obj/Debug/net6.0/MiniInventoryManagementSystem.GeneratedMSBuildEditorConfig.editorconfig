@@ -84,6 +84,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/Purches/DailyPurches.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hlc1xEYWlseVB1cmNoZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/Purches/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -98,6 +102,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/Purches/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/Purches/MonthlyPurches.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHVyY2hlc1xNb250aGx5UHVyY2hlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/SaleManCommission/CurrentDate.cshtml]
@@ -132,6 +140,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/Sales/CurrentDateSale.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcQ3VycmVudERhdGVTYWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/Sales/CurrentMonthSale.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcQ3VycmVudE1vbnRoU2FsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/Sales/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2FsZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -156,8 +172,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/StockProfit/DailyProfit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tQcm9maXRcRGFpbHlQcm9maXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/StockProfit/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tQcm9maXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/StockProfit/MonthlyProfit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvY2tQcm9maXRcTW9udGhseVByb2ZpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/khanm/OneDrive/Desktop/DOt-Net-Core-API-Core-MVC-Projects/MiniInventoryManagementSystem/MiniInventoryManagementSystem/Views/StockProfit/Profit.cshtml]

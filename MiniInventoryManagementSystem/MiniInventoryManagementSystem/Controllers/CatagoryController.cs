@@ -21,6 +21,7 @@ namespace MiniInventoryManagementSystem.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.IsError = false;
             return View();
         }
 
@@ -36,25 +37,15 @@ namespace MiniInventoryManagementSystem.Controllers
             {
                 if (data[i].CatagoryName == catagory.CatagoryName)
                 {
-                    var ErrorMessage = new SupportClassErrorView()
-                    {
-                        IsError = true,
-                        ErrorType = "Duplicate Value",
-                        ErrorMessage = catagory.CatagoryName+" is already exits"
-                    };
-                    return RedirectToAction("Create", ErrorMessage);
+                    ViewBag.IsError = true;
+                    ViewBag.errorType = "Duplicate Entry";
+                    ViewBag.errorMassage = "Catagory Name Is Already Available";
+                    return View(catagory);
                 }
             }
             await _context.CatagoryTable.AddAsync(catagory);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public ActionResult Create(SupportClassErrorView error)
-        {
-            TempData["errormessage"] = error;
-            return View();
         }
 
         public async Task<ActionResult> Edit(int id)

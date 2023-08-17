@@ -1,79 +1,91 @@
 ﻿@model MiniInventoryManagementSystem.Models.SupportClass.Sales_and_SalesDetails
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Sales Details";
 }
+<link rel="stylesheet" href="@Url.Content("~/CustomStyle/SelectBox/SelectBoxDesign.css")">
+<style>
+    .card {
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
 
-<h1>Edit</h1>
+<div class="card pt-5 pb-1">
+    <h1 class="text-center">Edit Sales Details</h1>
+    <div class="row ms-5">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="SalesDetailsId" />
+                <input type="hidden" asp-for="Sales_CustomerName" />
+                <input type="hidden" asp-for="TotalPrice" />
+                <input type="hidden" asp-for="SalesDetails_ProductName" />
+                <input type="hidden" asp-for="catagoryName" />
+                <input type="hidden" asp-for="SalesId" />
+                <input type="hidden" asp-for="Sales_SalesManName" />
 
-<h4>Sales_and_SalesDetails</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="SalesDetailsId"/>
-            <input type="hidden" asp-for="Sales_CustomerName"/>
-            <input type="hidden" asp-for="TotalPrice" />
-            <input type="hidden" asp-for="SalesDetails_ProductName" />
-            <input type="hidden" asp-for="catagoryName" />
-            <input type="hidden" asp-for="SalesId" />
-            <input type="hidden" asp-for="Sales_SalesManName" />
-
-            <div class="form-group">
-                <label asp-for="SalesDetails_ProductId" class="control-label"></label>
-                <select asp-for="SalesDetails_ProductId" class="form-control">
-                    <option>Select Product</option>
-                    @foreach (var item in ViewBag.ProductList)
-                    {
-                        <option value="@item.ProductId">@item.ProductName</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="SalesDetailsQuantity" class="control-label"></label>
-                <input asp-for="SalesDetailsQuantity" class="form-control" />
-                <span asp-validation-for="SalesDetailsQuantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SalesDetailsPrice" class="control-label"></label>
-                <input asp-for="SalesDetailsPrice" class="form-control" />
-                <span asp-validation-for="SalesDetailsPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sales_CustomerId" class="control-label"></label>
-                <select asp-for="Sales_CustomerId" class="form-control">
-                    <option>Select Customer</option>
-                    @foreach (var item in ViewBag.CustomerList)
-                    {
-                        <option value="@item.CustomerId">@item.CustomerName,@item.CustomerAddress,@item.CustomerPhone</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="Sales_SalesManId" class="control-label"></label>
-                <select asp-for="Sales_SalesManId" class="form-control">
-                    <option>Select SalesMan</option>
-                    @foreach (var item in ViewBag.SalesManList)
-                    {
-                        <option value="@item.SalesManId">@item.SalesManName,SalesManDesignation,@item.SalesManPhone</option>
-                    }
-                </select>                
-            </div>
-            <div class="form-group">
-                <label asp-for="SalesDate" class="control-label"></label>
-                <input type="date" asp-for="SalesDate" class="form-control" />
-                <span asp-validation-for="SalesDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <label asp-for="SalesDetails_ProductId" class="control-label"></label>
+                    <div class="selectItem">
+                        <select asp-for="SalesDetails_ProductId" class="form-control">
+                            <option>Select Product</option>
+                            @foreach (var item in ViewBag.ProductList)
+                            {
+                                <option value="@item.ProductId">@item.ProductName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesDetailsQuantity" class="control-label"></label>
+                    <input asp-for="SalesDetailsQuantity" class="form-control" />
+                    <span asp-validation-for="SalesDetailsQuantity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesDetailsPrice" class="control-label"></label>
+                    <input asp-for="SalesDetailsPrice" class="form-control" />
+                    <span asp-validation-for="SalesDetailsPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sales_CustomerId" class="control-label"></label>
+                    <div class="selectItem">
+                        <select asp-for="Sales_CustomerId" class="form-control">
+                            <option>Select Customer</option>
+                            @foreach (var item in ViewBag.CustomerList)
+                            {
+                                <option value="@item.CustomerId">@item.CustomerName,@item.CustomerAddress,@item.CustomerPhone</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Sales_SalesManId" class="control-label"></label>
+                    <div class="selectItem">
+                        <select asp-for="Sales_SalesManId" class="form-control">
+                            <option>Select SalesMan</option>
+                            @foreach (var item in ViewBag.SalesManList)
+                            {
+                                <option value="@item.SalesManId">@item.SalesManName,SalesManDesignation,@item.SalesManPhone</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SalesDate" class="control-label"></label>
+                    <input type="date" asp-for="SalesDate" class="form-control" />
+                    <span asp-validation-for="SalesDate" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-2 mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+@*    <div class="ms-2">
+        <a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Sales List</a>
+    </div>*@
 </div>
 
 @section Scripts {

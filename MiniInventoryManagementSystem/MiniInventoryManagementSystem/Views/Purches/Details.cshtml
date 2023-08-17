@@ -1,78 +1,121 @@
 ﻿@model MiniInventoryManagementSystem.Models.SupportClass.Purches_And_PurchesDetails
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Purches Details";
 }
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint.css")>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint_jQuery.css")>
+<style>
+    #CustomDataTable_filter {
+        display: none;
+    }
 
-<h1>Details</h1>
+    #CustomDataTable_info {
+        display: none;
+    }
 
-<div>
-    <h4>Purches_And_PurchesDetails</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchesDetails_ProductId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchesDetails_ProductId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.catagoryName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.catagoryName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchesDetailsPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchesDetailsPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchesDetailsQuantity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchesDetailsQuantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchesId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchesId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PurchesDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PurchesDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Purches_SupplyerId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Purches_SupplyerId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SupplyerName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SupplyerName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-    </dl>
+    #CustomDataTable_paginate {
+        display: none;
+    }
+
+    tr th {
+        display: none;
+    }
+
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    td {
+        text-align: left !important;
+    }
+
+</style>
+
+<div class="card p-4 pb-2">
+    <h1 class="text-center">View Purches Details</h1>
+    <div class="row">
+        <table id="CustomDataTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>@Html.DisplayNameFor(model => model.PurchesDetails_ProductId)</></td>
+                    <td>@Html.DisplayFor(model => model.PurchesDetails_ProductId)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>@Html.DisplayNameFor(model => model.ProductName)</td>
+                    <td>@Html.DisplayFor(model => model.ProductName)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>@Html.DisplayNameFor(model => model.catagoryName)</td>
+                    <td>@Html.DisplayFor(model => model.catagoryName)</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>@Html.DisplayNameFor(model => model.PurchesDetailsPrice)</td>
+                    <td> @Html.DisplayFor(model => model.PurchesDetailsPrice)</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>@Html.DisplayNameFor(model => model.PurchesDetailsQuantity)</td>
+                    <td>@Html.DisplayFor(model => model.PurchesDetailsQuantity)</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>@Html.DisplayNameFor(model => model.PurchesId)</td>
+                    <td>@Html.DisplayFor(model => model.PurchesId)</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>@Html.DisplayNameFor(model => model.PurchesDate)</td>
+                    <td>@Html.DisplayFor(model => model.PurchesDate)</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>@Html.DisplayNameFor(model => model.Purches_SupplyerId)</td>
+                    <td>@Html.DisplayFor(model => model.Purches_SupplyerId)</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>@Html.DisplayNameFor(model => model.SupplyerName)</td>
+                    <td>@Html.DisplayFor(model => model.SupplyerName)</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td> @Html.DisplayNameFor(model => model.TotalPrice)</td>
+                    <td>@Html.DisplayFor(model => model.TotalPrice)</td>
+                </tr>
+        </table>
+    </div>
+    <div class="ms-2 mt-3">
+        <a asp-action="Edit" asp-route-id="@Model?.PurchesDetailsId" class="text-decoration-none"> <i class="bi bi-caret-left-square fs-6"></i>Go To Edit</a>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.PurchesDetailsId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery2.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery3.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/Datatable_JQuery4.js")></script>
+    <script>
+        $(document).ready(function () {
+            $('#CustomDataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+    </script>
+}

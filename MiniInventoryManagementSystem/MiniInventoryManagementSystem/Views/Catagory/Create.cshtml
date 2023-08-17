@@ -1,9 +1,7 @@
 ﻿@model MiniInventoryManagementSystem.Models.Catagory
-@using MiniInventoryManagementSystem.Models.SupportClass
 
 @{
     ViewData["Title"] = "Create New Catagory";
-    SupportClassErrorView errorview = TempData["errormessage"] as SupportClassErrorView;
 }
 
 
@@ -22,14 +20,11 @@
 </style>
 
 
-@if (errorview != null && errorview.IsError)
+@if (ViewBag.IsError)
 {
-    <div class="alert alert-warning alert-dismissible fade show 
-                d-flex justify-content-between" role="alert">
-        <p class="mt-2"><strong>@errorview.ErrorType!</strong> @errorview.ErrorMessage</p>
-        <button type="button" class="close closebtn" data-dismiss="alert" aria-label="Close">
-            <i class="bi bi-x-circle fs-4"></i>
-        </button>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@ViewBag.errorType!</strong> @ViewBag.errorMassage.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 }
 <div class="card pt-5 pb-1">

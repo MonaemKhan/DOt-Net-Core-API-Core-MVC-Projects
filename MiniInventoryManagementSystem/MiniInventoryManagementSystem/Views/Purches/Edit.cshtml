@@ -3,65 +3,72 @@
 @{
     ViewData["Title"] = "Edit";
 }
+<link rel="stylesheet" href="@Url.Content("~/CustomStyle/SelectBox/SelectBoxDesign.css")">
+<style>
+    .card {
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+</style>
 
-<h1>Edit</h1>
+<div class="card pt-5 pb-1">
+    <h1 class="text-center">Edit Purches Details</h1>
 
-<h4>Purches_And_PurchesDetails</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PurchesDetailsId" />
-            <div class="form-group">
-                <label asp-for="PurchesDetails_ProductId" class="control-label"></label>
-                <select asp-for="PurchesDetails_ProductId" class="form-control">
-                    <option>Select Product</option>
-                    @foreach (var item in ViewBag.ProductList)
-                    {
-                        <option value="@item.ProductId">@item.ProductName</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchesDetailsPrice" class="control-label"></label>
-                <input asp-for="PurchesDetailsPrice" class="form-control" />
-                <span asp-validation-for="PurchesDetailsPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchesDetailsQuantity" class="control-label"></label>
-                <input asp-for="PurchesDetailsQuantity" class="form-control" />
-                <span asp-validation-for="PurchesDetailsQuantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchesId" class="control-label"></label>
-                <input asp-for="PurchesId" class="form-control" />
-                <span asp-validation-for="PurchesId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PurchesDate" class="control-label"></label>
-                <input type="date" asp-for="PurchesDate" class="form-control" />
-                <span asp-validation-for="PurchesDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Purches_SupplyerId" class="control-label"></label>
-                <select asp-for="Purches_SupplyerId" class="form-control">
-                    <option>Select Supplyer</option>
-                    @foreach (var item in ViewBag.SupplyerList)
-                    {
-                        <option value="@item.SupplyerId">@item.SupplyerName</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row ms-5">
+        <div class="col-md-6">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PurchesDetailsId" />
+                <div class="form-group">
+                    <label asp-for="PurchesDetails_ProductId" class="control-label"></label>
+                    <div class="selectItem">
+                        <select asp-for="PurchesDetails_ProductId" class="form-control">
+                            <option>Select Product</option>
+                            @foreach (var item in ViewBag.ProductList)
+                            {
+                                <option value="@item.ProductId">@item.ProductName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PurchesDetailsPrice" class="control-label"></label>
+                    <input asp-for="PurchesDetailsPrice" class="form-control" />
+                    <span asp-validation-for="PurchesDetailsPrice" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PurchesDetailsQuantity" class="control-label"></label>
+                    <input asp-for="PurchesDetailsQuantity" class="form-control" />
+                    <span asp-validation-for="PurchesDetailsQuantity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PurchesId" class="control-label"></label>
+                    <input asp-for="PurchesId" class="form-control" />
+                    <span asp-validation-for="PurchesId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PurchesDate" class="control-label"></label>
+                    <input type="date" asp-for="PurchesDate" class="form-control" />
+                    <span asp-validation-for="PurchesDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Purches_SupplyerId" class="control-label"></label>
+                    <div class="selectItem">
+                        <select asp-for="Purches_SupplyerId" class="form-control">
+                            <option>Select Supplyer</option>
+                            @foreach (var item in ViewBag.SupplyerList)
+                            {
+                                <option value="@item.SupplyerId">@item.SupplyerName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group mt-2 mb-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

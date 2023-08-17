@@ -22,6 +22,7 @@ namespace MiniInventoryManagementSystem.Controllers
         //create action start from here
         public ActionResult Create()
         {
+            ViewBag.IsError = false;
             return View();
         }
 
@@ -38,25 +39,15 @@ namespace MiniInventoryManagementSystem.Controllers
                 if (data[i].CustomerName == cust.CustomerName && data[i].CustomerEmail==cust.CustomerEmail 
                     && data[i].CustomerPhone == cust.CustomerPhone)
                 {
-                    var ErrorMessage = new SupportClassErrorView()
-                    {
-                        IsError = true,
-                        ErrorType = "Duplicate Value",
-                        ErrorMessage = cust.CustomerName + " is already exits"
-                    };
-                    return RedirectToAction("Create", ErrorMessage);
+                    ViewBag.IsError = true;
+                    ViewBag.errorType = "Duplicate Entry";
+                    ViewBag.errorMassage = "Customer Name Is Already Available";
+                    return View(cust);
                 }
             }
             await _context.CustomerTable.AddAsync(cust);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
-        }
-
-        [HttpGet]
-        public ActionResult Create(SupportClassErrorView error)
-        {
-            TempData["errormessage"] = error;
-            return View();
         }
         //create action end here
 

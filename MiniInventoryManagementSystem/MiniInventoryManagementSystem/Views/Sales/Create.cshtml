@@ -11,6 +11,13 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 </style>
+@if (ViewBag.IsError)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@ViewBag.errorType!</strong> @ViewBag.errorMassage.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <div class="card pt-5 pb-1">
     <h1 class="text-center">Sale Product</h1>
@@ -77,9 +84,9 @@
         </div>
     </div>
 
-    <div class="ms-2">
+@*    <div class="ms-2">
         <a asp-action="Index">Back to List</a>
-    </div>
+    </div>*@
 </div>
 
 @section Scripts {

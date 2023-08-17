@@ -222,5 +222,107 @@ namespace MiniInventoryManagementSystem.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        //daily purches
+        public async Task<ActionResult> DailyPurches()
+        {
+            List<Purches> purches = await _context.PurchesTable.ToListAsync();
+            List<PurchesDetails> purchesDetails = await _context.PurchesDetailsTable.ToListAsync();
+            List<Product> products = await _context.ProductTable.ToListAsync();
+            List<Supplyer> supplyers = await _context.SupplyerTable.ToListAsync();
+            List<Catagory> catagories = await _context.CatagoryTable.ToListAsync();
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var item = from p in purches
+                       join s in supplyers on p.Purches_SupplyerId equals s.SupplyerId
+                       join pd in purchesDetails on p.PurchesId equals pd.PurchesDetails_PurchesId
+                       join pro in products on pd.PurchesDetails_ProductId equals pro.ProductId
+                       join ca in catagories on pro.Product_CatagoryId equals ca.CatagoryId
+                       where (p.PurchesDate == date)
+                       select new
+                       {
+                           p.PurchesId,
+                           p.PurchesDate,
+                           s.SupplyerId,
+                           s.SupplyerName,
+                           pd.PurchesDetailsId,
+                           pd.PurchesDetailsPrice,
+                           pd.PurchesDetailsQuantity,
+                           pro.ProductId,
+                           pro.ProductName,
+                           ca.CatagoryName
+                       };
+            List<Purches_And_PurchesDetails> ppd = new List<Purches_And_PurchesDetails>();
+            foreach (var da in item)
+            {
+                ppd.Add(new Purches_And_PurchesDetails()
+                {
+                    PurchesDetailsId = da.PurchesDetailsId,
+                    PurchesDetails_ProductId = da.ProductId,
+                    ProductName = da.ProductName,
+                    catagoryName = da.CatagoryName,
+                    PurchesDetailsPrice = da.PurchesDetailsPrice,
+                    PurchesDetailsQuantity = da.PurchesDetailsQuantity,
+                    PurchesId = da.PurchesId,
+                    PurchesDate = da.PurchesDate,
+                    Purches_SupplyerId = da.SupplyerId,
+                    SupplyerName = da.SupplyerName,
+                    TotalPrice = da.PurchesDetailsPrice * da.PurchesDetailsQuantity
+                });
+            }
+            return View(ppd);
+        }
+
+        //monthly purches
+        public async Task<ActionResult> MonthlyPurches()
+        {
+            List<Purches> purches = await _context.PurchesTable.ToListAsync();
+            List<PurchesDetails> purchesDetails = await _context.PurchesDetailsTable.ToListAsync();
+            List<Product> products = await _context.ProductTable.ToListAsync();
+            List<Supplyer> supplyers = await _context.SupplyerTable.ToListAsync();
+            List<Catagory> catagories = await _context.CatagoryTable.ToListAsync();
+
+            string date = DateTime.Now.ToString("yyyy-MM-dd");
+
+            var item = from p in purches
+                       join s in supplyers on p.Purches_SupplyerId equals s.SupplyerId
+                       join pd in purchesDetails on p.PurchesId equals pd.PurchesDetails_PurchesId
+                       join pro in products on pd.PurchesDetails_ProductId equals pro.ProductId
+                       join ca in catagories on pro.Product_CatagoryId equals ca.CatagoryId
+                       where (p.PurchesDate.Substring(0, 4) == date.Substring(0, 4) && p.PurchesDate.Substring(5, 2) == date.Substring(5, 2))
+                       select new
+                       {
+                           p.PurchesId,
+                           p.PurchesDate,
+                           s.SupplyerId,
+                           s.SupplyerName,
+                           pd.PurchesDetailsId,
+                           pd.PurchesDetailsPrice,
+                           pd.PurchesDetailsQuantity,
+                           pro.ProductId,
+                           pro.ProductName,
+                           ca.CatagoryName
+                       };
+            List<Purches_And_PurchesDetails> ppd = new List<Purches_And_PurchesDetails>();
+            foreach (var da in item)
+            {
+                ppd.Add(new Purches_And_PurchesDetails()
+                {
+                    PurchesDetailsId = da.PurchesDetailsId,
+                    PurchesDetails_ProductId = da.ProductId,
+                    ProductName = da.ProductName,
+                    catagoryName = da.CatagoryName,
+                    PurchesDetailsPrice = da.PurchesDetailsPrice,
+                    PurchesDetailsQuantity = da.PurchesDetailsQuantity,
+                    PurchesId = da.PurchesId,
+                    PurchesDate = da.PurchesDate,
+                    Purches_SupplyerId = da.SupplyerId,
+                    SupplyerName = da.SupplyerName,
+                    TotalPrice = da.PurchesDetailsPrice * da.PurchesDetailsQuantity
+                });
+            }
+            return View(ppd);
+        }
     }
 }

@@ -1,66 +1,112 @@
 ﻿@model MiniInventoryManagementSystem.Models.SupportClass.Sales_and_SalesDetails
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Sales Details";
 }
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint.css")>
+<link rel="stylesheet" href=@Url.Content("~/DataTablePrint/datatableprint_jQuery.css")>
+<style>
+    #CustomDataTable_filter {
+        display: none;
+    }
 
-<h1>Details</h1>
+    #CustomDataTable_info {
+        display: none;
+    }
 
-<div>
-    <h4>Sales_and_SalesDetails</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Sales_CustomerName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Sales_CustomerName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Sales_SalesManName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Sales_SalesManName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.catagoryName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.catagoryName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SalesDetails_ProductName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SalesDetails_ProductName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SalesDetailsQuantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SalesDetailsQuantity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SalesDetailsPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SalesDetailsPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SalesDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SalesDate)
-        </dd>
-    </dl>
+    #CustomDataTable_paginate {
+        display: none;
+    }
+
+    tr th {
+        display: none;
+    }
+
+    .card {
+        border: 1px solid gold;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    td {
+        text-align: left !important;
+    }
+
+</style>
+
+<div class="card p-4 pb-2">
+    <h1 class="text-center">View Sales Info</h1>
+    <div class="row">
+        <table id="CustomDataTable" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>@Html.DisplayNameFor(model => model.Sales_CustomerName)</></td>
+                    <td>@Html.DisplayFor(model => model.Sales_CustomerName)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>@Html.DisplayNameFor(model => model.Sales_SalesManName)</td>
+                    <td>@Html.DisplayFor(model => model.Sales_SalesManName)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesDetails_ProductName)</td>
+                    <td>@Html.DisplayFor(model => model.SalesDetails_ProductName)</td>                    
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>@Html.DisplayNameFor(model => model.catagoryName)</td>
+                    <td>@Html.DisplayFor(model => model.catagoryName)</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesDetailsQuantity)</td>
+                    <td>@Html.DisplayFor(model => model.SalesDetailsQuantity)</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesDetailsPrice)</td>
+                    <td>@Html.DisplayFor(model => model.SalesDetailsPrice)</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>@Html.DisplayNameFor(model => model.TotalPrice)</td>
+                    <td>@Html.DisplayFor(model => model.TotalPrice)</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>@Html.DisplayNameFor(model => model.SalesDate)</td>
+                    <td>@Html.DisplayFor(model => model.SalesDate)</td>
+                </tr>
+        </table>
+    </div>
+    <div class="ms-2 mt-3">
+        @*<a asp-action="Index" class="text-decoration-none"><i class="bi bi-caret-left-square fs-6"></i>Back To Sales List </a> ||*@
+        <a asp-action="Edit" asp-route-id="@Model?.SalesDetailsId" class="text-decoration-none"> <i class="bi bi-caret-left-square fs-6"></i>Go To Edit</a>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.SalesDetailsId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+@section Scripts {
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery2.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/DataTable_JQuery3.js")></script>
+    <script src=@Url.Content("~/DataTablePrint/Datatable_JQuery4.js")></script>
+    <script>
+        $(document).ready(function () {
+            $('#CustomDataTable').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+    </script>
+}

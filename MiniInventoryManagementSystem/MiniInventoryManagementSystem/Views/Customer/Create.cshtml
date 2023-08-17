@@ -1,9 +1,7 @@
 ﻿@model MiniInventoryManagementSystem.Models.Customer
-@using MiniInventoryManagementSystem.Models.SupportClass
 
 @{
     ViewData["Title"] = "Create Customer";
-    SupportClassErrorView errorview = TempData["errormessage"] as SupportClassErrorView;
 }
 
 <style>
@@ -14,11 +12,12 @@
     }
 </style>
 
-@if (errorview != null && errorview.IsError)
+@if (ViewBag.IsError)
 {
-    <script>
-        alert(`@errorview.ErrorType\n @errorview.ErrorMessage`);
-    </script>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>@ViewBag.errorType!</strong> @ViewBag.errorMassage.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 }
 <div class="card pt-5 pb-1">
     <h1 class="text-center">Create New Customer</h1>
