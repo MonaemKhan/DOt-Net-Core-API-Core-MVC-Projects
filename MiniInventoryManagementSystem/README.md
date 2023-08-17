@@ -1,3 +1,4 @@
+
 # Hi, I'm M.A. Monaem Khan! 👋
 
 
@@ -22,5 +23,25 @@ This Project Can Help Any Little Bussiness Man or Woman , to Keep Tract in Their
 - Database - MS SQL Server
 - Design - HTML5, CSS3 and JavaScript
 
+# Images
 
 ![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/Daily%20Sale%20Details.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/Daily%20Sale%20Details.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/Monthly%20Sale%20Details.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/Daily%20SalesMan%20Commision.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/SalesMan%20Commission%20Monthly.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/profit.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/profit%20daily.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/profit%20monthly.png)
+
+![Logo](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images/OverAll%20Stock%20and%20Profit.png)
+
+
+[See More Photos](https://github.com/MonaemKhan/DOt-Net-Core-API-Core-MVC-Projects/blob/main/MiniInventoryManagementSystem/Projects%20Images)
