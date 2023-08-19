@@ -1,0 +1,107 @@
+﻿@model IEnumerable<EmployeeDetails.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href=@Url.Content("https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css")>
+<link rel="stylesheet" href=@Url.Content("https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css")>
+
+<script src=@Url.Content("https://code.jquery.com/jquery-3.7.0.js")></script>
+<script src=@Url.Content("https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js")></script>
+<script src=@Url.Content("https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js")></script>
+
+<h1>Employee List</h1>
+<p class="mb-3 mt-2">
+    <a asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-person-fill-add"></i>Add New</a>
+</p>
+
+<table id="MyTable" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th colspan="4" style="text-align:center;">
+                Education
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                Country
+            </th>
+            <th>
+                State
+            </th>
+            <th>
+                City
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img decoding="async" src="@("~/UserImages/"+(item.ImageName))" asp-append-version="true" alt="@(item.ImageName)"
+                         style="height:150px;width:150px;" class="img-thumbnail" id="UploadFile">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    SSC @Html.DisplayFor(modelItem => item.SSC)
+                </td>
+                <td>
+                    HSC @Html.DisplayFor(modelItem => item.HSC)
+                </td>
+                <td>
+                    BSC @Html.DisplayFor(modelItem => item.BSC)
+                </td>
+                <td>
+                    MSC @Html.DisplayFor(modelItem => item.MSC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee_country.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee_State.StateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee_City.CityName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EmployeeId" class="btn text-primary"><i class="bi bi-pencil-square"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn text-primary"><i class="bi bi-file-person"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn text-primary"><i class="bi bi-trash3-fill"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        new DataTable('#MyTable', {
+            responsive: {
+                details: false
+            },
+            ordering: false
+        });
+    </script>
+}

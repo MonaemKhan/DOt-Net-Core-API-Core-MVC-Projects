@@ -1,0 +1,187 @@
+﻿@model EmployeeDetails.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="p-5">
+    <h2>Employee From</h2>
+    <hr>
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-denger"></div>
+        <input type="hidden" asp-for="EmployeeId" />
+        <input type="hidden" asp-for="ImageName" />
+        <div class="d-flex ms-3 me-5 mt-3">
+            <div class="col-md-6 me-4">
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5">Name </label>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="text" asp-for="Name" class="form-control" />
+                    </div>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5 mt-1">Gender </label>
+                    </div>
+                    <div class="col-md-9 d-flex justify-content-between">
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model=>model.Gender, "Male", htmlAttributes:new {@class = "form-check-input"}) Male
+                        </label>
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model=>model.Gender,"Female", htmlAttributes: new {@class= "form-check-input"}) Female
+                        </label>
+                        <label class="form-check-label">
+                            @Html.RadioButtonFor(model=>model.Gender,"Others", htmlAttributes: new {@class = "form-check-input"}) Others
+                        </label>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5">Education </label>
+                    </div>
+                    <div class="col-md-9 d-flex justify-content-between">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="SSC" id="SSC">
+                            <label class="form-check-label" for="SSC">
+                                SSC
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="HSC" id="HSC">
+                            <label class="form-check-label" for="HSC">
+                                HSC
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="BSC" id="BSC">
+                            <label class="form-check-label" for="BSC">
+                                BSC
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" asp-for="MSC" id="MSC">
+                            <label class="form-check-label" for="MSC">
+                                MSC
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5">Address </label>
+                    </div>
+                    <div class="col-md-9">
+                        <textarea type="text" asp-for="Address" class="form-control" style="resize: none;"></textarea>
+                    </div>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5">Country Name </label>
+                    </div>
+                    <div class="col-md-9">
+                        <select class="form-select" asp-for="countryId" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            @foreach (var item in ViewBag.Country)
+                            {
+                                <option value="@item.CountryId">@item.CountryName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5">State Name </label>
+                    </div>
+                    <div class="col-md-9">
+                        <select class="form-select" asp-for="stateId" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            @foreach (var item in ViewBag.State)
+                            {
+                                <option value="@item.StateId">@item.StateName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5">City Name </label>
+                    </div>
+                    <div class="col-md-9">
+                        <select class="form-select" asp-for="cityId" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            @foreach (var item in ViewBag.City)
+                            {
+                                <option value="@item.CityId">@item.CityName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="d-flex mb-4 align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label me-5">Upload Photo </label>
+                    </div>
+                    <div class="col-md-9">
+                        <input class="form-control" asp-for="ImageFile" type="file" id="FileUpload" onchange="PreviewImage()" accept="image/*" />
+                    </div>
+                </div>
+
+                @if(Model.ImageName == null)
+                {
+                    <div class="d-flex mb-4 align-items-center justify-content-center">
+                        <img decoding="async" src="@("~/images/default_user.png")" asp-append-version="true" alt="default user"
+                             style="border: 2px solid lightblue;border-radius: 10px; height:400px;width:400px" id="UploadFile">
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex mb-4 align-items-center justify-content-center">
+                        <img decoding="async" src="@("~/UserImages/"+(Model.ImageName))" asp-append-version="true" alt="default user"
+                             style="border: 2px solid lightblue;border-radius: 10px; height:400px;width:400px" id="UploadFile">
+                    </div>
+                }
+
+            </div>
+        </div>
+
+        <div class="d-flex">
+            <div class="col-md-6">
+                <a asp-action="Index" class="btn btn-outline-primary">Back to Index</a>
+            </div>
+            <div><input type="submit" value="Create" class="btn btn-primary" /></div>
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+
+        //image preview
+        function PreviewImage() {
+            var oFReader = new FileReader();
+            oFReader.readAsDataURL(document.getElementById("FileUpload").files[0]);
+            oFReader.onload = function (oFREvent) {
+                document.getElementById("UploadFile").src = oFREvent.target.result;
+            };
+        }
+    </script>
+}
