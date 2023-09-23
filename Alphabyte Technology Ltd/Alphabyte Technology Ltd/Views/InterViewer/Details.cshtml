@@ -1,0 +1,98 @@
+﻿@model Alphabyte_Technology_Ltd_.Models.InterViewerDetails
+
+@{
+    ViewData["Title"] = "Details";
+    string[] MonthName = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+}
+
+<h1>Details of @Model.Name</h1>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Division
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InterViewerDetails_Division.DivisionName)
+        </dd>
+        <dt class = "col-sm-2">
+            Department
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.InterViewerDetails_Department.DeptName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DoB)
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                string[] date = Model.DoB.Split("-");
+                string monthName = MonthName[Convert.ToInt32(date[1]) - 1];
+            }
+            @date[2]-@monthName-@date[0]
+        </dd>
+        <dt class="col-sm-2">
+            Age
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                string[] bday = Model.DoB.Split("-");
+                DateTime today = DateTime.Today;
+                int year = today.Year - Convert.ToInt32(bday[0]);
+                int month = today.Month - Convert.ToInt32(bday[1]);
+                int day = today.Day - Convert.ToInt32(bday[2]);
+
+                if (day < 0)
+                {
+                    month--;
+                    day += DateTime.DaysInMonth(today.Year, today.Month);
+                }
+                if (month < 0)
+                {
+                    year--;
+                    month += 12;
+                }
+            }
+            @if (day == 0 || day == 1)
+            {
+                if (month == 0 || month == 1)
+                {
+                    <span>@year years @month month @day day </span>
+                }
+                else
+                {
+                    <span>@year years @month months @day day </span>
+                }
+            }else if (@month == 0 || month == 1)
+            {
+                <span>@year years @month month @day days </span>
+            }
+            else
+            {
+                <span>@year years @month months @day days </span>
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ResumeFile)
+        </dt>
+        <dd class = "col-sm-10">
+            <a href="./ResumeUpload/@Model.ResumeFile" download="./ResumeUpload/@Model.ResumeFile" class="text-decoration-none">@Model.ResumeFile</a>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

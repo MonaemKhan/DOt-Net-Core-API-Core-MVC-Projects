@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Alphabyte Technology Ltd..props" />
+</Project>

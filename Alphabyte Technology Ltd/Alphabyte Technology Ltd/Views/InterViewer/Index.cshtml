@@ -1,0 +1,127 @@
+﻿@model IEnumerable<Alphabyte_Technology_Ltd_.Models.InterViewerDetails>
+
+@{
+    ViewData["Title"] = "Index";
+    string[] MonthName = { "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID Number
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+               Division
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Resume
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterViewerDetails_Division.DivisionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InterViewerDetails_Department.DeptName)
+            </td>
+            <td>
+                    @{
+                        string[] date = item.DoB.Split("-");
+                        string monthName = MonthName[Convert.ToInt32(date[1])-1];
+                    }
+                    @date[2]-@monthName-@date[0]
+            </td>
+            <td>
+                    @{
+                        string[] bday = item.DoB.Split("-");
+                        DateTime today = DateTime.Today;
+                        int year = today.Year - Convert.ToInt32(bday[0]);
+                        int month = today.Month - Convert.ToInt32(bday[1]);
+                        int day = today.Day - Convert.ToInt32(bday[2]);
+
+                        if (day < 0)
+                        {
+                            month--;
+                            day += DateTime.DaysInMonth(today.Year, today.Month);
+                        }
+                        if (month < 0)
+                        {
+                            year--;
+                            month += 12;
+                        }
+                    }
+                    @if(year==0 || year == 1)
+                    {
+                        if (day == 0 || day == 1)
+                        {
+                            if (month == 0 || month == 1)
+                            {
+                                <span>@year year @month month @day day </span>
+                            }
+                            else
+                            {
+                                <span>@year year @month months @day day </span>
+                            }
+                        }
+                        else if (@month == 0 || month == 1)
+                        {
+                            <span>@year year @month month @day days </span>
+                        }
+                    }
+                    else if (day == 0 || day == 1)
+                    {
+                        if (month == 0 || month == 1)
+                        {
+                            <span>@year years @month month @day day </span>
+                        }
+                        else
+                        {
+                            <span>@year years @month months @day day </span>
+                        }
+                    }
+                    else{
+                        <span>@year years @month months @day days </span>
+                    }
+            </td>
+            <td>
+                    <a href="./ResumeUpload/@item.ResumeFile" download="./ResumeUpload/@item.ResumeFile" class="text-decoration-none">@item.ResumeFile</a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none">View</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id" class="text-decoration-none">Edit</a> |                
+                <a asp-action="Delete" asp-route-id="@item.Id" class="text-decoration-none">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

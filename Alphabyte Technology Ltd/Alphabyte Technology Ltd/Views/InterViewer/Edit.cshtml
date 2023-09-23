@@ -1,0 +1,101 @@
+﻿@model Alphabyte_Technology_Ltd_.Models.InterViewerDetails
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Info of @Model.Name</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ResumeFile" />
+            <div class="form-group m-1">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group m-1">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group m-1">
+                <label class="control-label">Division Name</label>
+                <select asp-for="InterViewerDetails_DivisionId" class="form-control" id="Devision">
+                    <option value="">Select Division</option>
+                    @foreach (var item in ViewBag.Division)
+                    {
+                        <option value="@item.DivisionId">@item.DivisionName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group m-1">
+                <label class="control-label">Department Name</label>
+                <select asp-for="InterViewerDetails_DepartmentDept_Id" class="form-control" id="Depertment">
+                    <option>Select Department</option>
+                    @foreach (var item in ViewBag.Department)
+                    {
+                        <option value="@item.Dept_Id">@item.DeptName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group m-1">
+                <label class="control-label">Date of Birth</label>
+                <input type="date" asp-for="DoB" class="form-control" />
+                <span asp-validation-for="DoB" class="text-danger"></span>
+            </div>
+            <div class="form-group m-1">
+                <label class="control-label">Resume File Name</label>
+                <input asp-for="ResumeFile" class="form-control" disabled/>
+            </div>
+            <div class="form-group m-1">
+                <label for="resume" class="control-label">Upload Resume</label>
+                <input type="file" name="resume" id="resume" class="form-control" />
+                @if (ViewBag.FileError != null)
+                {
+                    <span class="text-danger"> @ViewBag.FileError</span>
+                }
+            </div>
+            <div class="form-group mt-2">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#Devision").change(function () { // target input field id, for its dynamic value w have to make changes
+                var _divId = $(this).val(); // get the input field value
+                jQuery.ajax({
+                    url: '/InterViewer/GetDeptByDivId', // it where we perform an operation for the given input
+                    type: 'GET', //type get
+                    datatype: 'json',
+                    data: { divId: _divId }, //now we send the value of the input field
+                    success: function (data) {
+                        var deptDown = $("#Depertment"); //this is the targeted selector’s id name that we want to manipulate
+                        deptDown.empty(); //make previous output empty, so that we can rearrange then
+                        deptDown.append($('<option>').text("Select Depertment").attr('value', '')); //add innerHtml to that selector
+                        console.log(data);
+                        $.each(data, function (index, dept) { //now foreach data that we receive by GET
+                            console.log("Adding state option:", dept.deptName, dept.dept_Id);
+                            deptDown.append($('<option>').text(dept.deptName).attr('value', dept.dept_Id)); //add innerHTML
+                        });
+                    },
+                    error: function (error) {
+                        console.log("Error:", error); //if anything goes wrong
+                    }
+
+                });
+            });
+        });
+    </script>
+}
