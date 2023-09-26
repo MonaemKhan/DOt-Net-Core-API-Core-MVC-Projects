@@ -4,24 +4,24 @@
 
 # Inventory Management System
 
-This Project Can Help Any Little Bussiness Man or Woman , to Keep Tract in Their Bussiness
+This Project Can Help Any Little Business Man or Woman, to Keep Tract in Their business
 
 
 ## Features
 
-- Store Sale or purches Easily
-- Store Salesman/Customer/Supplyer/Product Details & Can edit view or Change Them
+- Store Sales or purchases Easily
+- Store Salesman/Customer/Supplier/Product Details & Can edit view or Change Them
 - See Overall Stock and Profit
-- See Daily & Monthly Profit, Sale and Purches Details
-- See SalesMan Daily & Monthly Product Sale Quentity and Their Commission
+- See daily and monthly profit, sale, and purchase details.
+- See Salesman's Daily & Monthly Product Sale Quantity and Their Commission
 
 
 ## 🛠 Use to Build This Project
 - Language - C#
-- Frontend Framework - Dot NET Core MVC (6.0)
-- Backend Framework - Dot NET Core API (6.0)
-- Database - MS SQL Server
-- Design - HTML5, CSS3 and JavaScript
+- Frontend Framework: Dot NET Core MVC (6.0)
+- Backend Framework: Dot NET Core API (6.0)
+- Database: MS SQL Server
+- Design: HTML5, CSS3 and JavaScript
 
 # Images
 
