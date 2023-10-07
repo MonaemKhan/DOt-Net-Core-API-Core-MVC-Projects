@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CRAwG5jitGYLCySCVNz1qZ5m4gVkiVokOBy4neRPFWY=",
+  "Hash": "kZuw9FN76GuMX3cL/U+bZrBh9DvmeOhZRL+M/518hOQ=",
   "Source": "EmployeeDetails",
   "BasePath": "_content/EmployeeDetails",
   "Mode": "Default",
@@ -34408,12 +34408,12 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\khanm\\OneDrive\\Desktop\\DOt-Net-Core-API-Core-MVC-Projects\\EmployeeDetails\\EmployeeDetails\\wwwroot\\UserImages\\Monaem 1 20-08-23 05",
+      "Identity": "C:\\Users\\khanm\\OneDrive\\Desktop\\DOt-Net-Core-API-Core-MVC-Projects\\EmployeeDetails\\EmployeeDetails\\wwwroot\\UserImages\\Monaem 1 .jpg",
       "SourceId": "EmployeeDetails",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\khanm\\OneDrive\\Desktop\\DOt-Net-Core-API-Core-MVC-Projects\\EmployeeDetails\\EmployeeDetails\\wwwroot\\",
       "BasePath": "_content/EmployeeDetails",
-      "RelativePath": "UserImages/Monaem 1 20-08-23 05",
+      "RelativePath": "UserImages/Monaem 1 .jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -34422,7 +34422,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\UserImages\\Monaem 1 20-08-23 05"
+      "OriginalItemSpec": "wwwroot\\UserImages\\Monaem 1 .jpg"
     }
   ]
 }
