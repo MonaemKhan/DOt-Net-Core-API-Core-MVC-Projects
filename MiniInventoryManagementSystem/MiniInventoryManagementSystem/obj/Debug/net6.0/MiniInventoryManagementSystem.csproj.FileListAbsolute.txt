@@ -496,3 +496,4 @@ C:\Users\khanm\OneDrive\Desktop\DOt-Net-Core-API-Core-MVC-Projects\MiniInventory
 C:\Users\khanm\OneDrive\Desktop\DOt-Net-Core-API-Core-MVC-Projects\MiniInventoryManagementSystem\MiniInventoryManagementSystem\obj\Debug\net6.0\MiniInventoryManagementSystem.pdb
 C:\Users\khanm\OneDrive\Desktop\DOt-Net-Core-API-Core-MVC-Projects\MiniInventoryManagementSystem\MiniInventoryManagementSystem\obj\Debug\net6.0\MiniInventoryManagementSystem.genruntimeconfig.cache
 C:\Users\khanm\OneDrive\Desktop\DOt-Net-Core-API-Core-MVC-Projects\MiniInventoryManagementSystem\MiniInventoryManagementSystem\obj\Debug\net6.0\ref\MiniInventoryManagementSystem.dll
+C:\Users\khanm\OneDrive\Desktop\DOt-Net-Core-API-Core-MVC-Projects\MiniInventoryManagementSystem\MiniInventoryManagementSystem\obj\Debug\net6.0\MiniInventoryManagementSystem.sourcelink.json
